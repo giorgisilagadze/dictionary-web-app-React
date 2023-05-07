@@ -21,6 +21,10 @@ export default {
         dim: "#757575",
         violet: "#A445ED",
         txtOnDark: "#FFFFFF"
+      },
+      boxShadow: {
+        shad: "0px 5px 30px rgba(0, 0, 0, 0.1)",
+        shadDark: "0px 5px 30px #A445ED",
       }
     },
   },
