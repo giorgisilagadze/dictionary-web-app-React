@@ -9,6 +9,11 @@
   box-sizing: border-box;
 }
 
-html, body {
+html {
   height: 100%;
+}
+
+body {
+  height: 100%;
+  padding: 24px 24px 85px;
 }

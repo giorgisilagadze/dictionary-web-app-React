@@ -14,6 +14,7 @@ export default {
         input: "#F4F4F4",
         play: "#A445ED",
         inputDark: "#1F1F1F",
+        headerDiv: "#E9E9E9",
       },
       colors: {
         txtOnWhite: "#2D2D2D",
