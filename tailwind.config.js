@@ -25,7 +25,13 @@ export default {
       boxShadow: {
         shad: "0px 5px 30px rgba(0, 0, 0, 0.1)",
         shadDark: "0px 5px 30px #A445ED",
-      }
+      },
+      fontFamily: {
+        "inter": ["Inter"],
+        "lora": ["Lora"],
+        "inconsolata": ["Inconsolata"]
+      },
+      
     },
   },
   plugins: [],

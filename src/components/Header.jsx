@@ -1,7 +1,13 @@
 import { useState } from "react";
 
-export default function Header({ isDark, setIsDark }) {
+export default function Header({ isDark, setIsDark, font, setFont }) {
   const [isVisible, setIsVisible] = useState(false);
+
+  const fonts = [
+    { name: "Sans Serif", font: "inter" },
+    { name: "Serif", font: "lora" },
+    { name: "Mono", font: "inconsolata" },
+  ];
 
   return (
     <div className="flex w-full justify-between items-center">
@@ -39,8 +45,16 @@ export default function Header({ isDark, setIsDark }) {
             <div
               className={`absolute top-[64px] right-[129px] w-[140px] h-[100px] ${
                 isDark ? "bg-inputDark" : "bg-wholeWhite"
-              } rounded-2xl ${isDark ? "shadow-shadDark" : "shadow-shad"}`}
-            ></div>
+              } rounded-2xl ${isDark ? "shadow-shadDark" : "shadow-shad"} p-3`}
+            >
+              {fonts.map((item) => {
+                return (
+                  <p onClick={() => setFont(item.font)} key={Math.random()}>
+                    {item.name}
+                  </p>
+                );
+              })}
+            </div>
           ) : null}
         </div>
       </div>
