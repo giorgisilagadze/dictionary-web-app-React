@@ -1,7 +1,7 @@
 import Header from "./components/Header";
 import Input from "./components/Input";
 import { useState } from "react";
-import { Helmet } from "react-helmet";
+import Output from "./components/Output";
 import "./index.css";
 
 function App() {

@@ -15,12 +15,16 @@ export default {
         play: "#A445ED",
         inputDark: "#1F1F1F",
         headerDiv: "#E9E9E9",
+        hrDark: "#3A3A3A",
+        
       },
       colors: {
         txtOnWhite: "#2D2D2D",
         dim: "#757575",
         violet: "#A445ED",
-        txtOnDark: "#FFFFFF"
+        txtOnDark: "#FFFFFF",
+        meaning: "#757575",
+        li: "#8F19E8",
       },
       boxShadow: {
         shad: "0px 5px 30px rgba(0, 0, 0, 0.1)",
@@ -35,6 +39,10 @@ export default {
       fontSize: {
         head: ["14px", "24px"],
         input: ["16px", "19.36px"], 
+        word: ["32px", "38.73px"],
+        phonetic: ["18px", "24px"],
+        noun: ["18px", "21.78px"],
+        definition: ["15px", "24px"]
       },
       backgroundImage: {
         search: "url('./images/icon-search.svg')"
