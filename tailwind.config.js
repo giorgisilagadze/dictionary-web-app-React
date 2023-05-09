@@ -29,8 +29,19 @@ export default {
       fontFamily: {
         "inter": ["Inter"],
         "lora": ["Lora"],
-        "inconsolata": ["Inconsolata"]
+        "inconsolata": ["Inconsolata"],
+        "foldit": ["Foldit"]
       },
+      fontSize: {
+        head: ["14px", "24px"],
+        input: ["16px", "19.36px"], 
+      },
+      backgroundImage: {
+        search: "url('./images/icon-search.svg')"
+      },
+      backgroundPosition: {
+       'right-4': 'center right 1rem',
+      }
       
     },
   },

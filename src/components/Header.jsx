@@ -17,7 +17,11 @@ export default function Header({ isDark, setIsDark, font, setFont }) {
           className="flex gap-4 items-center"
           onClick={() => setIsVisible(!isVisible)}
         >
-          <p className={`${isDark ? "text-txtOnDark" : "text-txtOnWhite"}`}>
+          <p
+            className={`${
+              isDark ? "text-txtOnDark" : "text-txtOnWhite"
+            } font-bold text-head`}
+          >
             Sans Serif
           </p>
           <img src="./images/icon-arrow-down.svg" alt="arrow-down" />
@@ -45,11 +49,19 @@ export default function Header({ isDark, setIsDark, font, setFont }) {
             <div
               className={`absolute top-[64px] right-[129px] w-[140px] h-[100px] ${
                 isDark ? "bg-inputDark" : "bg-wholeWhite"
-              } rounded-2xl ${isDark ? "shadow-shadDark" : "shadow-shad"} p-3`}
+              } rounded-2xl ${
+                isDark ? "shadow-shadDark" : "shadow-shad"
+              } p-3 z-3`}
             >
               {fonts.map((item) => {
                 return (
-                  <p onClick={() => setFont(item.font)} key={Math.random()}>
+                  <p
+                    onClick={() => setFont(item.font)}
+                    key={Math.random()}
+                    className={`${
+                      isDark ? "text-txtOnDark" : "text-txtOnWhite"
+                    } font-bold text-head`}
+                  >
                     {item.name}
                   </p>
                 );

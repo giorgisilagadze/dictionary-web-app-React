@@ -1,5 +1,8 @@
 import Header from "./components/Header";
+import Input from "./components/Input";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
+import "./index.css";
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -18,6 +21,7 @@ function App() {
           font={font}
           setFont={setFont}
         />
+        <Input isDark={isDark} setIsDark={setIsDark} />
       </div>
     </>
   );
