@@ -63,7 +63,7 @@ export default function Output({
             />
           </div>
           <div className="mt-[31px]">
-            <p className="font-normal text-switchOff text-meaning">Meaning</p>
+            <p className="font-normal text-input text-meaning">Meaning</p>
             <ul className="list-disc ml-5">
               {definitionsNoun?.map((item) => {
                 return (
@@ -114,7 +114,7 @@ export default function Output({
             />
           </div>
           <div className="mt-[31px]">
-            <p className="font-normal text-switchOff text-meaning">Meaning</p>
+            <p className="font-normal text-input text-meaning">Meaning</p>
             <ul className="list-disc ml-5">
               {definitionsVerb?.map((item) => {
                 return (

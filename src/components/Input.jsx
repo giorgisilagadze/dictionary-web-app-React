@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import Output from "./Output";
+import NoMatch from "./NoMatch";
 
 export default function InAndOut({ isDark, setIsDark }) {
   const [data, setData] = useState(null);
@@ -22,16 +23,6 @@ export default function InAndOut({ isDark, setIsDark }) {
   };
 
   const getDefinitionsByPartOfSpeech = (data, partOfSpeech) => {
-    return data?.flatMap((item) =>
-      item.meanings.flatMap((meaning) =>
-        meaning.partOfSpeech === partOfSpeech
-          ? meaning.definitions.map((def) => def.definition)
-          : []
-      )
-    );
-  };
-
-  const getSynonymsByPartOfSpeech = (data, partOfSpeech) => {
     return data?.flatMap((item) =>
       item.meanings.flatMap((meaning) =>
         meaning.partOfSpeech === partOfSpeech
@@ -93,7 +84,7 @@ export default function InAndOut({ isDark, setIsDark }) {
           />
         </div>
       </div>
-      <Output
+      {/* <Output
         isDark={isDark}
         word={value}
         phonetic={data?.[0]?.phonetic}
@@ -105,7 +96,8 @@ export default function InAndOut({ isDark, setIsDark }) {
         voice={data?.[0].phonetics
           .map((phonetic) => phonetic.audio)
           .filter((audio) => audio != "")}
-      />
+      /> */}
+      <NoMatch isDark={isDark} />
     </>
   );
 }
