@@ -47,11 +47,9 @@ export default function Header({ isDark, setIsDark, font, setFont }) {
           />
           {isVisible ? (
             <div
-              className={`absolute top-[64px] right-[129px] w-[140px] h-[100px] ${
+              className={`absolute z-50 top-[64px] right-[129px] w-[140px] h-[100px] ${
                 isDark ? "bg-inputDark" : "bg-wholeWhite"
-              } rounded-2xl ${
-                isDark ? "shadow-shadDark" : "shadow-shad"
-              } p-3 z-3`}
+              } rounded-2xl ${isDark ? "shadow-shadDark" : "shadow-shad"} p-3`}
             >
               {fonts.map((item) => {
                 return (

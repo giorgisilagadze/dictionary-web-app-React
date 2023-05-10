@@ -31,10 +31,9 @@ export default {
         shadDark: "0px 5px 30px #A445ED",
       },
       fontFamily: {
-        "inter": ["Inter"],
-        "lora": ["Lora"],
-        "inconsolata": ["Inconsolata"],
-        "foldit": ["Foldit"]
+        inter: ['Inter', 'sans-serif'],
+        lora: ['Lora', 'serif'],
+        inconsolata: ['Inconsolata', 'monospace'],
       },
       fontSize: {
         head: ["14px", "24px"],
