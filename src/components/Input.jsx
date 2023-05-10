@@ -6,19 +6,14 @@ import NoMatch from "./NoMatch";
 export default function InAndOut({ isDark, setIsDark }) {
   const [data, setData] = useState(null);
   const [status, setStatus] = useState(null);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState();
+  const [result, setResult] = useState(false);
 
-  // const say = () => {
-  //   const word = voice.current.value;
-  //   if (word) {
-  //     const speech = new SpeechSynthesisUtterance(word);
-  //     window.speechSynthesis.speak(speech);
-  //   }
-  // };
-
+  console.log(value);
   const handleKeyDown = (event) => {
-    if (event.key === "Enter" && value != "") {
-      getData();
+    if (event.key === "Enter" && event.target.value != "") {
+      getData(event.target.value);
+      setValue(event.target.value);
     }
   };
 
@@ -32,7 +27,7 @@ export default function InAndOut({ isDark, setIsDark }) {
     );
   };
 
-  const getData = async () => {
+  const getData = async (value) => {
     const response = await axios.get(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${value}`
     );
@@ -69,13 +64,12 @@ export default function InAndOut({ isDark, setIsDark }) {
               isDark ? "text-txtOnDark" : "text-txtOnWhite"
             } absolute z-10`}
             placeholder="Search for any word…"
-            onKeyDown={handleKeyDown}
-            onChange={(event) => setValue(event.target.value)}
+            onKeyDown={(event) => handleKeyDown(event)}
           />
           <img
             src="./images/icon-search.svg"
             alt="search-icon"
-            className="absolute top-4 right-6 z-2"
+            className="absolute top-4 right-6 z-20"
             onClick={() => {
               if (value != "") {
                 getData();
@@ -84,20 +78,24 @@ export default function InAndOut({ isDark, setIsDark }) {
           />
         </div>
       </div>
-      {/* <Output
-        isDark={isDark}
-        word={value}
-        phonetic={data?.[0]?.phonetic}
-        definitionsNoun={getDefinitionsByPartOfSpeech(data, "noun")}
-        synonyms={data?.[0].meanings
-          .map((synonym) => synonym.synonyms)
-          .filter((synonyms) => synonyms != "")}
-        definitionsVerb={getDefinitionsByPartOfSpeech(data, "verb")}
-        voice={data?.[0].phonetics
-          .map((phonetic) => phonetic.audio)
-          .filter((audio) => audio != "")}
-      /> */}
-      <NoMatch isDark={isDark} />
+      {value != undefined &&
+        (data?.[0]?.word === value ? (
+          <Output
+            isDark={isDark}
+            word={value}
+            phonetic={data?.[0]?.phonetic}
+            definitionsNoun={getDefinitionsByPartOfSpeech(data, "noun")}
+            synonyms={data?.[0].meanings
+              .map((synonym) => synonym.synonyms)
+              .filter((synonyms) => synonyms != "")}
+            definitionsVerb={getDefinitionsByPartOfSpeech(data, "verb")}
+            voice={data?.[0].phonetics
+              .map((phonetic) => phonetic.audio)
+              .filter((audio) => audio != "")}
+          />
+        ) : (
+          <NoMatch isDark={isDark} />
+        ))}
     </>
   );
 }

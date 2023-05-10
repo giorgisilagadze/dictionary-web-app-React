@@ -37,7 +37,7 @@ export default function Output({
         />
         <audio
           controls
-          className="block mt-[50px]"
+          className="hidden"
           ref={audio}
           onClick={() => {
             console.log(voice?.[0]);
@@ -85,7 +85,7 @@ export default function Output({
 
       <div className="mt-[20px] flex gap-6 items-center flex-wrap">
         <p className="font-normal text-switchOff text-meaning">Synonyms</p>
-        {synonyms?.[0].map((item) => {
+        {synonyms?.[0]?.map((item) => {
           return (
             <p
               className="font-normal text-input text-violet"
