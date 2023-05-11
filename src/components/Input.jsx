@@ -92,6 +92,7 @@ export default function InAndOut({ isDark, setIsDark }) {
             voice={data?.[0].phonetics
               .map((phonetic) => phonetic.audio)
               .filter((audio) => audio != "")}
+            definitionsAdj={getDefinitionsByPartOfSpeech(data, "adjective")}
           />
         ) : (
           <NoMatch isDark={isDark} />

@@ -8,6 +8,7 @@ export default function Output({
   synonyms,
   definitionsVerb,
   voice,
+  definitionsAdj,
 }) {
   const audio = useRef(null);
 
@@ -83,19 +84,21 @@ export default function Output({
         </div>
       ) : null}
 
-      <div className="mt-[20px] flex gap-6 items-center flex-wrap">
-        <p className="font-normal text-switchOff text-meaning">Synonyms</p>
-        {synonyms?.[0]?.map((item) => {
-          return (
-            <p
-              className="font-normal text-input text-violet"
-              key={Math.random()}
-            >
-              {item}
-            </p>
-          );
-        })}
-      </div>
+      {synonyms?.length !== 0 ? (
+        <div className="mt-[20px] flex gap-4 items-center flex-wrap">
+          <p className="font-normal text-switchOff text-meaning">Synonyms</p>
+          {synonyms?.[0]?.map((item) => {
+            return (
+              <p
+                className="font-normal text-input text-violet"
+                key={Math.random()}
+              >
+                {item}
+              </p>
+            );
+          })}
+        </div>
+      ) : null}
 
       {definitionsVerb?.length !== 0 ? (
         <div>
@@ -117,6 +120,43 @@ export default function Output({
             <p className="font-normal text-input text-meaning">Meaning</p>
             <ul className="list-disc ml-5">
               {definitionsVerb?.map((item) => {
+                return (
+                  <li className="text-li mt-[13px]" key={Math.random()}>
+                    <span
+                      className={`${
+                        isDark ? "text-txtOnDark" : "text-txtOnWhite"
+                      } font-normal text-definition`}
+                    >
+                      {item}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      ) : null}
+
+      {definitionsAdj?.length !== 0 ? (
+        <div>
+          <div className="mt-[33px] flex gap-[16px] items-center">
+            <p
+              className={`${
+                isDark ? "text-txtOnDark" : "text-txtOnWhite"
+              } font-bold text-noun italic`}
+            >
+              adjective
+            </p>
+            <hr
+              className={`w-full h-[1px] border-none ${
+                isDark ? "bg-hrDark" : "bg-headerDiv"
+              }`}
+            />
+          </div>
+          <div className="mt-[31px]">
+            <p className="font-normal text-input text-meaning">Meaning</p>
+            <ul className="list-disc ml-5">
+              {definitionsAdj?.map((item) => {
                 return (
                   <li className="text-li mt-[13px]" key={Math.random()}>
                     <span
