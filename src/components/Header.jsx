@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function Header({ isDark, setIsDark, font, setFont }) {
   const [isVisible, setIsVisible] = useState(false);
+  const [fontName, setFontName] = useState("Sans Serif");
 
   const fonts = [
     { name: "Sans Serif", font: "inter" },
@@ -22,7 +23,7 @@ export default function Header({ isDark, setIsDark, font, setFont }) {
               isDark ? "text-txtOnDark" : "text-txtOnWhite"
             } font-bold text-head`}
           >
-            Sans Serif
+            {fontName}
           </p>
           <img src="./images/icon-arrow-down.svg" alt="arrow-down" />
         </div>
@@ -54,7 +55,11 @@ export default function Header({ isDark, setIsDark, font, setFont }) {
               {fonts.map((item) => {
                 return (
                   <p
-                    onClick={() => setFont(item.font)}
+                    onClick={() => {
+                      setFont(item.font);
+                      setFontName(item.name);
+                      setIsVisible(!isVisible);
+                    }}
                     key={Math.random()}
                     className={`${
                       isDark ? "text-txtOnDark" : "text-txtOnWhite"

@@ -41,7 +41,8 @@ export default {
         word: ["32px", "38.73px"],
         phonetic: ["18px", "24px"],
         noun: ["18px", "21.78px"],
-        definition: ["15px", "24px"]
+        definition: ["15px", "24px"],
+        source: ["14px", "16.94px"]
       },
       backgroundImage: {
         search: "url('./images/icon-search.svg')"

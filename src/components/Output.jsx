@@ -9,6 +9,7 @@ export default function Output({
   definitionsVerb,
   voice,
   definitionsAdj,
+  source,
 }) {
   const audio = useRef(null);
 
@@ -173,6 +174,28 @@ export default function Output({
           </div>
         </div>
       ) : null}
+
+      <hr
+        className={`w-full h-[1px] border-none mt-[32px] ${
+          isDark ? "bg-hrDark" : "bg-headerDiv"
+        }`}
+      />
+
+      <div className="mt-6">
+        <p className="font-normal text-source text-meaning underline">Source</p>
+        <div className="mt-2 flex gap-2">
+          <a href={source}>
+            <p
+              className={`${
+                isDark ? "text-txtOnDark" : "text-txtOnWhite"
+              } font-normal text-source`}
+            >
+              {source}
+            </p>
+          </a>
+          <img src="./images/icon-new-window.svg" alt="" />
+        </div>
+      </div>
     </div>
   );
 }
