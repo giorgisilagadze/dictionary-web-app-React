@@ -1,7 +1,8 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export default function Output({ isDark, data }) {
   const audio = useRef(null);
+  const [hover, setHover] = useState(false);
 
   const voice = data
     ?.map((item) =>
@@ -70,14 +71,29 @@ export default function Output({ isDark, data }) {
             {phonetic}
           </p>
         </div>
-        <img
-          src="./images/icon-play.svg"
-          alt="icon-play"
-          className="w-12 h-12 md:w-[75px] md:h-[75px] fl:cursor-pointer fl:hover:"
+        <div
+          className="relative w-12 h-12 md:h-[75px] md:w-[75px] fl:cursor-pointer"
+          onMouseOver={() => setHover(true)}
+          onMouseOut={() => setHover(false)}
           onClick={() => {
+            console.log(audio.current);
             audio.current.play();
           }}
-        />
+        >
+          <img
+            src="./images/Oval.svg"
+            alt="oval"
+            className={`absolute opacity-25 ${hover && "fl:opacity-100"}`}
+          />
+          <img
+            src="./images/icon-play.svg"
+            alt="icon-play"
+            className={`w-[13px] h-[13px] absolute top-[18px] left-[19px] z-40 md:top-[27px] md:left-[29px] md:w-[21px] md:h-[21px] ${
+              hover && "fl:brightness-[500%]"
+            }`}
+          />
+        </div>
+
         <audio controls className="hidden" ref={audio}>
           <source src="" type="audio/mpeg" />
         </audio>

@@ -18,6 +18,6 @@ html, body {
   filter: invert(32%) sepia(86%) saturate(3513%) hue-rotate(259deg) brightness(99%) contrast(88%);
 }
 
-.filterPlay {
-  filter: invert(34%) sepia(23%) saturate(5729%) hue-rotate(255deg) brightness(94%) contrast(97%);
+.fill {
+  fill: #A445ED;
 }
