@@ -15,7 +15,7 @@ export default function Header({ isDark, setIsDark, font, setFont }) {
       <img src="./images/logo.svg" alt="logo" />
       <div className="flex gap-4 items-center md:gap-[26px]">
         <div
-          className="flex gap-4 items-center"
+          className="flex gap-4 items-center fl:hover:cursor-pointer"
           onClick={() => setIsVisible(!isVisible)}
         >
           <p
@@ -32,7 +32,7 @@ export default function Header({ isDark, setIsDark, font, setFont }) {
           <div
             className={`w-10 h-5 ${
               isDark ? "bg-switchOn" : "bg-switchOff"
-            } rounded-[10px] p-[3px]`}
+            } rounded-[10px] p-[3px] fl:hover:cursor-pointer`}
             onClick={() => setIsDark(!isDark)}
           >
             <div
@@ -48,11 +48,11 @@ export default function Header({ isDark, setIsDark, font, setFont }) {
           />
           {isVisible ? (
             <div
-              className={`absolute z-50 top-[64px] right-[129px] w-[140px] h-[100px] ${
+              className={`absolute z-50 top-[44px] right-[105px] w-[140px] h-[100px] ${
                 isDark ? "bg-inputDark" : "bg-wholeWhite"
               } rounded-2xl ${
                 isDark ? "shadow-shadDark" : "shadow-shad"
-              } p-3 md:top-[105px] md:w-[183px] md:h-[152px] md:px-6 md:py-2 md:right-[168px]`}
+              } p-3 md:top-[47px] md:w-[183px] md:h-[152px] md:px-6 md:py-2 md:right-[120px]`}
             >
               {fonts.map((item) => {
                 return (
@@ -65,7 +65,7 @@ export default function Header({ isDark, setIsDark, font, setFont }) {
                     key={Math.random()}
                     className={`${
                       isDark ? "text-txtOnDark" : "text-txtOnWhite"
-                    } font-bold text-head md:text-phonetic md:mt-4`}
+                    } font-bold text-head md:text-phonetic md:mt-4 fl:hover:cursor-pointer fl:hover:text-violet`}
                   >
                     {item.name}
                   </p>

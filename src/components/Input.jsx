@@ -62,8 +62,8 @@ export default function InAndOut({ isDark, setIsDark }) {
             } rounded-2xl pt-[12px] pb-[14px] pl-[24px] focus:outline-none font-bold text-input ${
               isDark ? "text-txtOnDark" : "text-txtOnWhite"
             } absolute z-10 ${
-              isRed ? "border-2 border-rose-500" : "border-none"
-            } md:pt-[19px] md:pb-[22px] md:h-[64px] md:text-inputTab`}
+              isRed ? "border-[1px] border-rose-500" : ""
+            } md:pt-[19px] md:pb-[22px] md:h-[64px] md:text-inputTab fl:hover:cursor-pointer fl:hover:border-input fl:hover:border-[1px]`}
             placeholder="Search for any word…"
             onKeyDown={(event) => {
               if (event.key === "Enter") {
@@ -102,9 +102,13 @@ export default function InAndOut({ isDark, setIsDark }) {
               .map((synonym) => synonym.synonyms)
               .filter((synonyms) => synonyms != "")}
             definitionsVerb={getDefinitionsByPartOfSpeech(data, "verb")}
-            voice={data?.[0].phonetics
-              .map((phonetic) => phonetic.audio)
-              .filter((audio) => audio != "")}
+            voice={data
+              ?.map((item) =>
+                item.phonetics
+                  .map((phonetic) => phonetic.audio)
+                  .filter((audio) => audio != "")
+              )
+              .flat()}
             definitionsAdj={getDefinitionsByPartOfSpeech(data, "adjective")}
             source={data?.[0]?.sourceUrls}
             exampleOfNoun={getExamplesByPartOfSpeech(data, "noun")}

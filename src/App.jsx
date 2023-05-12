@@ -20,7 +20,7 @@ function App() {
           : "font-inconsolata"
       } md:pt-[58px] md:px-[39.5px] md:pb-[118px]`}
     >
-      <div className="md:max-w-[736px] md:m-auto">
+      <div className="md:max-w-[736px] md:m-auto relative">
         <Header
           isDark={isDark}
           setIsDark={setIsDark}

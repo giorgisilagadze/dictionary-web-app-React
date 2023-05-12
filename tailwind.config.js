@@ -5,6 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      "md" : "768px",
+      "fl" : "1440px"
+    },
+
     extend: {
       backgroundColor: {
         wholeWhite: "#FFFFFF",
@@ -56,8 +61,8 @@ export default {
        'right-4': 'center right 1rem',
       },
       borderColor: {
-        red: "red"
-      }
+        input: "#A445ED"
+      },
       
     },
   },

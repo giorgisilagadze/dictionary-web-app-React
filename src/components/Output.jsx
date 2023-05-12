@@ -40,7 +40,7 @@ export default function Output({
         <img
           src="./images/icon-play.svg"
           alt="icon-play"
-          className="w-12 h-12 md:w-[75px] md:h-[75px]"
+          className="w-12 h-12 md:w-[75px] md:h-[75px] fl:cursor-pointer fl:hover:"
           onClick={() => {
             audio.current.play();
             console.log(voice?.[0]);
@@ -110,7 +110,7 @@ export default function Output({
           {synonyms?.[0]?.map((item) => {
             return (
               <p
-                className="font-normal text-input text-violet md:text-inputTab"
+                className="font-normal text-input text-violet md:text-inputTab fl:cursor-pointer fl:hover:underline"
                 key={Math.random()}
               >
                 {item}
