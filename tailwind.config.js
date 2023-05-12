@@ -42,13 +42,20 @@ export default {
         phonetic: ["18px", "24px"],
         noun: ["18px", "21.78px"],
         definition: ["15px", "24px"],
-        source: ["14px", "16.94px"]
+        source: ["14px", "16.94px"],
+        inputTab: ["20px", "20.98px"],
+        wordTab: ["64px" , "67.14px"],
+        phoneticTab: ["24px", "29.05px"],
+        nounTab: ["24px", "25.18px"],
       },
       backgroundImage: {
         search: "url('./images/icon-search.svg')"
       },
       backgroundPosition: {
        'right-4': 'center right 1rem',
+      },
+      borderColor: {
+        red: "red"
       }
       
     },

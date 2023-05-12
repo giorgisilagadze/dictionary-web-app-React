@@ -13,7 +13,7 @@ export default function Header({ isDark, setIsDark, font, setFont }) {
   return (
     <div className="flex w-full justify-between items-center">
       <img src="./images/logo.svg" alt="logo" />
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-4 items-center md:gap-[26px]">
         <div
           className="flex gap-4 items-center"
           onClick={() => setIsVisible(!isVisible)}
@@ -21,7 +21,7 @@ export default function Header({ isDark, setIsDark, font, setFont }) {
           <p
             className={`${
               isDark ? "text-txtOnDark" : "text-txtOnWhite"
-            } font-bold text-head`}
+            } font-bold text-head md:text-phonetic`}
           >
             {fontName}
           </p>
@@ -50,7 +50,9 @@ export default function Header({ isDark, setIsDark, font, setFont }) {
             <div
               className={`absolute z-50 top-[64px] right-[129px] w-[140px] h-[100px] ${
                 isDark ? "bg-inputDark" : "bg-wholeWhite"
-              } rounded-2xl ${isDark ? "shadow-shadDark" : "shadow-shad"} p-3`}
+              } rounded-2xl ${
+                isDark ? "shadow-shadDark" : "shadow-shad"
+              } p-3 md:top-[105px] md:w-[183px] md:h-[152px] md:px-6 md:py-2 md:right-[168px]`}
             >
               {fonts.map((item) => {
                 return (
@@ -63,7 +65,7 @@ export default function Header({ isDark, setIsDark, font, setFont }) {
                     key={Math.random()}
                     className={`${
                       isDark ? "text-txtOnDark" : "text-txtOnWhite"
-                    } font-bold text-head`}
+                    } font-bold text-head md:text-phonetic md:mt-4`}
                   >
                     {item.name}
                   </p>

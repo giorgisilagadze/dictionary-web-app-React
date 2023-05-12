@@ -7,11 +7,24 @@ export default function InAndOut({ isDark, setIsDark }) {
   const [data, setData] = useState(null);
   const [status, setStatus] = useState(null);
   const [value, setValue] = useState();
-  const [result, setResult] = useState(false);
+  const [isRed, setIsRed] = useState(false);
+  const inputRef = useRef(null);
 
   console.log(value);
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && event.target.value != "") {
+      getData(event.target.value);
+      setValue(event.target.value);
+    }
+
+    // if (event.key === "Enter" && event.target.value === "") {
+    //   setIsRed(!isRed);
+    //   console.log(isRed);
+    // }
+  };
+
+  const handleClick = (event) => {
+    if (event.target.value != "") {
       getData(event.target.value);
       setValue(event.target.value);
     }
@@ -54,26 +67,33 @@ export default function InAndOut({ isDark, setIsDark }) {
 
   return (
     <>
-      <div className="mt-6 w-full">
+      <div className="mt-6 w-full md:mt-[51.5px]">
         <div className="relative">
           <input
             type="text"
             className={`w-full h-[48px] ${
               isDark ? "bg-inputDark" : "bg-input"
-            } rounded-2xl pt-[12px] pb-[14px] pl-[14px] focus:outline-none font-bold text-input ${
+            } rounded-2xl pt-[12px] pb-[14px] pl-[24px] focus:outline-none font-bold text-input ${
               isDark ? "text-txtOnDark" : "text-txtOnWhite"
-            } absolute z-10`}
+            } absolute z-10 ${
+              isRed ? "border-red" : ""
+            } md:pt-[19px] md:pb-[22px] md:h-[64px] md:text-inputTab`}
             placeholder="Search for any word…"
             onKeyDown={(event) => handleKeyDown(event)}
+            ref={inputRef}
           />
           <img
             src="./images/icon-search.svg"
             alt="search-icon"
-            className="absolute top-4 right-6 z-20"
+            className="absolute top-4 right-6 z-20 md:top-6"
             onClick={() => {
-              if (value != "") {
-                getData();
-              }
+              // if (inputRef.current.value != "") {
+              //   getData(inputRef.current.value);
+              //   console.log(inputRef.current.value);
+              // }
+              // else {
+              //   setIsRed(!isRed);
+              // }
             }}
           />
         </div>

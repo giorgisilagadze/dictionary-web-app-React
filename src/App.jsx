@@ -12,7 +12,7 @@ function App() {
     <div
       className={`w-full px-6 pt-6 pb-[84px] ${
         isDark ? "bg-wholeDark" : "bg-wholeWhite"
-      } font-${font} md:pt-[58px] md:px-[39.5px] md:pb-[118px]`}
+      } font-${font} md:pt-[58px] md:px-[39.5px] md:pb-[118px] md:max-w-screen-md	md:m-auto`}
     >
       <Header
         isDark={isDark}

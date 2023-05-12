@@ -14,24 +14,24 @@ export default function Output({
   const audio = useRef(null);
 
   return (
-    <div className="w-full mt-24">
+    <div className="w-full mt-24 md:mt-[165.5px]">
       <div className="flex justify-between items-center">
         <div>
           <h1
             className={`${
               isDark ? "text-txtOnDark" : "text-txtOnWhite"
-            } font-bold text-word`}
+            } font-bold text-word md:text-wordTab`}
           >
             {word}
           </h1>
-          <p className="font-normal text-phonetic text-violet mt-2">
+          <p className="font-normal text-phonetic text-violet mt-2 md:mt-[11px] md:text-phoneticTab">
             {phonetic}
           </p>
         </div>
         <img
           src="./images/icon-play.svg"
           alt="icon-play"
-          className="w-12 h-12"
+          className="w-12 h-12 md:w-[75px] md:h-[75px]"
           onClick={() => {
             audio.current.play();
             console.log(voice?.[0]);
@@ -50,11 +50,11 @@ export default function Output({
       </div>
       {definitionsNoun?.length !== 0 ? (
         <div>
-          <div className="mt-[29px] flex gap-[16px] items-center">
+          <div className="mt-[29px] flex gap-[16px] items-center md:mt-[42px] md:gap-[32px]">
             <p
               className={`${
                 isDark ? "text-txtOnDark" : "text-txtOnWhite"
-              } font-bold text-noun italic`}
+              } font-bold text-noun italic md:text-nounTab`}
             >
               noun
             </p>
@@ -64,16 +64,18 @@ export default function Output({
               }`}
             />
           </div>
-          <div className="mt-[31px]">
-            <p className="font-normal text-input text-meaning">Meaning</p>
-            <ul className="list-disc ml-5">
+          <div className="mt-[31px] md:mt-[40px]">
+            <p className="font-normal text-input text-meaning md:text-inputTab md:pb-[14px]">
+              Meaning
+            </p>
+            <ul className="list-disc ml-5 md:ml-10">
               {definitionsNoun?.map((item) => {
                 return (
                   <li className="text-li mt-[13px]" key={Math.random()}>
                     <span
                       className={`${
                         isDark ? "text-txtOnDark" : "text-txtOnWhite"
-                      } font-normal text-definition`}
+                      } font-normal text-definition md:text-phonetic`}
                     >
                       {item}
                     </span>
@@ -86,12 +88,12 @@ export default function Output({
       ) : null}
 
       {synonyms?.length !== 0 ? (
-        <div className="mt-[20px] flex gap-4 items-center flex-wrap">
-          <p className="font-normal text-switchOff text-meaning">Synonyms</p>
+        <div className="mt-[20px] flex gap-4 items-center flex-wrap md:mt-[40px] md:gap-5">
+          <p className="font-normal text-meaning md:text-inputTab">Synonyms</p>
           {synonyms?.[0]?.map((item) => {
             return (
               <p
-                className="font-normal text-input text-violet"
+                className="font-normal text-input text-violet md:text-inputTab"
                 key={Math.random()}
               >
                 {item}
@@ -103,11 +105,11 @@ export default function Output({
 
       {definitionsVerb?.length !== 0 ? (
         <div>
-          <div className="mt-[33px] flex gap-[16px] items-center">
+          <div className="mt-[33px] flex gap-[16px] items-center md:mt-[40px] md:gap-[32px]">
             <p
               className={`${
                 isDark ? "text-txtOnDark" : "text-txtOnWhite"
-              } font-bold text-noun italic`}
+              } font-bold text-noun italic md:text-nounTab`}
             >
               verb
             </p>
@@ -117,16 +119,18 @@ export default function Output({
               }`}
             />
           </div>
-          <div className="mt-[31px]">
-            <p className="font-normal text-input text-meaning">Meaning</p>
-            <ul className="list-disc ml-5">
+          <div className="mt-[31px] md:mt-[40px]">
+            <p className="font-normal text-input text-meaning md:text-inputTab md:pb-[14px]">
+              Meaning
+            </p>
+            <ul className="list-disc ml-5 md:ml-10">
               {definitionsVerb?.map((item) => {
                 return (
                   <li className="text-li mt-[13px]" key={Math.random()}>
                     <span
                       className={`${
                         isDark ? "text-txtOnDark" : "text-txtOnWhite"
-                      } font-normal text-definition`}
+                      } font-normal text-definition md:text-phonetic`}
                     >
                       {item}
                     </span>
@@ -140,11 +144,11 @@ export default function Output({
 
       {definitionsAdj?.length !== 0 ? (
         <div>
-          <div className="mt-[33px] flex gap-[16px] items-center">
+          <div className="mt-[33px] flex gap-[16px] items-center md:mt-[40px] md:gap-[32px]">
             <p
               className={`${
                 isDark ? "text-txtOnDark" : "text-txtOnWhite"
-              } font-bold text-noun italic`}
+              } font-bold text-noun italic md:text-nounTab`}
             >
               adjective
             </p>
@@ -154,16 +158,18 @@ export default function Output({
               }`}
             />
           </div>
-          <div className="mt-[31px]">
-            <p className="font-normal text-input text-meaning">Meaning</p>
-            <ul className="list-disc ml-5">
+          <div className="mt-[31px] md:mt-[40px]">
+            <p className="font-normal text-input text-meaning md:text-inputTab md:pb-[14px]">
+              Meaning
+            </p>
+            <ul className="list-disc ml-5 md:ml-10">
               {definitionsAdj?.map((item) => {
                 return (
                   <li className="text-li mt-[13px]" key={Math.random()}>
                     <span
                       className={`${
                         isDark ? "text-txtOnDark" : "text-txtOnWhite"
-                      } font-normal text-definition`}
+                      } font-normal text-definition md:text-phonetic`}
                     >
                       {item}
                     </span>
@@ -177,20 +183,20 @@ export default function Output({
 
       <hr
         className={`w-full h-[1px] border-none mt-[32px] ${
-          isDark ? "bg-hrDark" : "bg-headerDiv"
+          isDark ? "bg-hrDark" : "bg-headerDiv md:mt-[40px]"
         }`}
       />
 
-      <div className="mt-6">
+      <div className="mt-6 md:flex md:gap-[25px] md:items-center">
         <p className="font-normal text-source text-meaning underline">Source</p>
-        <div className="mt-2 flex gap-2">
+        <div className="mt-2 flex gap-2 md:mt-0">
           <a href={source}>
             <p
               className={`${
                 isDark ? "text-txtOnDark" : "text-txtOnWhite"
-              } font-normal text-source`}
+              } font-normal text-source underline`}
             >
-              {source}
+              {source[0]}
             </p>
           </a>
           <img src="./images/icon-new-window.svg" alt="" />
