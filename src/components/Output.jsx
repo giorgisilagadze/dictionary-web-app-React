@@ -1,26 +1,59 @@
 import { useRef, useEffect } from "react";
 
-export default function Output({
-  isDark,
-  word,
-  phonetic,
-  definitionsNoun,
-  synonyms,
-  definitionsVerb,
-  voice,
-  definitionsAdj,
-  source,
-  exampleOfNoun,
-  exampleOfVerb,
-  exampleOfAdj,
-}) {
+export default function Output({ isDark, data }) {
   const audio = useRef(null);
+
+  const voice = data
+    ?.map((item) =>
+      item.phonetics
+        .map((phonetic) => phonetic.audio)
+        .filter((audio) => audio != "")
+    )
+    .flat();
 
   useEffect(() => {
     if (audio.current && voice) {
       audio.current.src = voice[0];
     }
   }, [voice]);
+
+  const getDefinitionsByPartOfSpeech = (data, partOfSpeech) => {
+    return data?.flatMap((item) =>
+      item.meanings.flatMap((meaning) =>
+        meaning.partOfSpeech === partOfSpeech
+          ? meaning.definitions.map((def) => def.definition)
+          : []
+      )
+    );
+  };
+
+  const definitionsNoun = getDefinitionsByPartOfSpeech(data, "noun");
+  const definitionsVerb = getDefinitionsByPartOfSpeech(data, "verb");
+  const definitionsAdj = getDefinitionsByPartOfSpeech(data, "adjective");
+
+  const getExamplesByPartOfSpeech = (data, partOfSpeech) => {
+    return data?.flatMap((item) =>
+      item.meanings.flatMap((meaning) =>
+        meaning.partOfSpeech === partOfSpeech
+          ? meaning.definitions.map((def) => def.example)
+          : []
+      )
+    );
+  };
+
+  const exampleOfNoun = getExamplesByPartOfSpeech(data, "noun");
+  const exampleOfVerb = getExamplesByPartOfSpeech(data, "verb");
+  const exampleOfAdj = getExamplesByPartOfSpeech(data, "adjective");
+
+  const word = data[0].word;
+
+  const phonetic = data?.[0]?.phonetic;
+
+  const synonyms = data?.[0].meanings
+    .map((synonym) => synonym.synonyms)
+    .filter((synonyms) => synonyms != "");
+
+  const source = data?.[0]?.sourceUrls;
 
   return (
     <div className="w-full mt-24 md:mt-[165.5px]">
@@ -43,18 +76,9 @@ export default function Output({
           className="w-12 h-12 md:w-[75px] md:h-[75px] fl:cursor-pointer fl:hover:"
           onClick={() => {
             audio.current.play();
-            console.log(voice?.[0]);
-            console.log(audio.current);
           }}
         />
-        <audio
-          controls
-          className="hidden"
-          ref={audio}
-          onClick={() => {
-            console.log(voice?.[0]);
-          }}
-        >
+        <audio controls className="hidden" ref={audio}>
           <source src="" type="audio/mpeg" />
         </audio>
       </div>
@@ -143,7 +167,7 @@ export default function Output({
             <ul className="list-disc ml-5 md:ml-10">
               {definitionsVerb?.map((item, index) => {
                 return (
-                  <div key={index}>
+                  <div key={Math.random()}>
                     <li className="text-li mt-[13px]">
                       <span
                         className={`${

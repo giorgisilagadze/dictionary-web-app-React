@@ -14,7 +14,6 @@ export default function InAndOut({ isDark, setIsDark }) {
       setIsRed(false);
     } else {
       setIsRed(true);
-      console.log(!isRed);
       setData(null);
     }
   };
@@ -30,25 +29,6 @@ export default function InAndOut({ isDark, setIsDark }) {
     } catch {
       setData("");
     }
-  };
-  const getDefinitionsByPartOfSpeech = (data, partOfSpeech) => {
-    return data?.flatMap((item) =>
-      item.meanings.flatMap((meaning) =>
-        meaning.partOfSpeech === partOfSpeech
-          ? meaning.definitions.map((def) => def.definition)
-          : []
-      )
-    );
-  };
-
-  const getExamplesByPartOfSpeech = (data, partOfSpeech) => {
-    return data?.flatMap((item) =>
-      item.meanings.flatMap((meaning) =>
-        meaning.partOfSpeech === partOfSpeech
-          ? meaning.definitions.map((def) => def.example)
-          : []
-      )
-    );
   };
 
   return (
@@ -93,28 +73,7 @@ export default function InAndOut({ isDark, setIsDark }) {
       {!isRed &&
         data != undefined &&
         (data != "" ? (
-          <Output
-            isDark={isDark}
-            word={data[0].word}
-            phonetic={data?.[0]?.phonetic}
-            definitionsNoun={getDefinitionsByPartOfSpeech(data, "noun")}
-            synonyms={data?.[0].meanings
-              .map((synonym) => synonym.synonyms)
-              .filter((synonyms) => synonyms != "")}
-            definitionsVerb={getDefinitionsByPartOfSpeech(data, "verb")}
-            voice={data
-              ?.map((item) =>
-                item.phonetics
-                  .map((phonetic) => phonetic.audio)
-                  .filter((audio) => audio != "")
-              )
-              .flat()}
-            definitionsAdj={getDefinitionsByPartOfSpeech(data, "adjective")}
-            source={data?.[0]?.sourceUrls}
-            exampleOfNoun={getExamplesByPartOfSpeech(data, "noun")}
-            exampleOfVerb={getExamplesByPartOfSpeech(data, "verb")}
-            exampleOfAdj={getExamplesByPartOfSpeech(data, "adjective")}
-          />
+          <Output data={data} isDark={isDark} />
         ) : (
           <NoMatch isDark={isDark} />
         ))}
