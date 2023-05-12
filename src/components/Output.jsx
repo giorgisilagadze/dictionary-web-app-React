@@ -76,7 +76,6 @@ export default function Output({ isDark, data }) {
           onMouseOver={() => setHover(true)}
           onMouseOut={() => setHover(false)}
           onClick={() => {
-            console.log(audio.current);
             audio.current.play();
           }}
         >
