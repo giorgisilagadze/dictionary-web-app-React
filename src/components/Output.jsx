@@ -261,7 +261,7 @@ export default function Output({ isDark, data }) {
       <div className="mt-6 md:flex md:gap-[25px] md:items-center">
         <p className="font-normal text-source text-meaning underline">Source</p>
         <div className="mt-2 flex gap-2 md:mt-0">
-          <a href={source}>
+          <a href={source} target="_blank">
             <p
               className={`${
                 isDark ? "text-txtOnDark" : "text-txtOnWhite"
