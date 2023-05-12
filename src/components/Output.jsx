@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 export default function Output({
   isDark,
@@ -10,8 +10,17 @@ export default function Output({
   voice,
   definitionsAdj,
   source,
+  exampleOfNoun,
+  exampleOfVerb,
+  exampleOfAdj,
 }) {
   const audio = useRef(null);
+
+  useEffect(() => {
+    if (audio.current && voice) {
+      audio.current.src = voice[0];
+    }
+  }, [voice]);
 
   return (
     <div className="w-full mt-24 md:mt-[165.5px]">
@@ -35,6 +44,7 @@ export default function Output({
           onClick={() => {
             audio.current.play();
             console.log(voice?.[0]);
+            console.log(audio.current);
           }}
         />
         <audio
@@ -45,7 +55,7 @@ export default function Output({
             console.log(voice?.[0]);
           }}
         >
-          <source src={voice?.[0]} type="audio/mpeg" />
+          <source src="" type="audio/mpeg" />
         </audio>
       </div>
       {definitionsNoun?.length !== 0 ? (
@@ -69,17 +79,24 @@ export default function Output({
               Meaning
             </p>
             <ul className="list-disc ml-5 md:ml-10">
-              {definitionsNoun?.map((item) => {
+              {definitionsNoun?.map((item, index) => {
                 return (
-                  <li className="text-li mt-[13px]" key={Math.random()}>
-                    <span
-                      className={`${
-                        isDark ? "text-txtOnDark" : "text-txtOnWhite"
-                      } font-normal text-definition md:text-phonetic`}
-                    >
-                      {item}
-                    </span>
-                  </li>
+                  <div key={index}>
+                    <li className="text-li mt-[13px]">
+                      <span
+                        className={`${
+                          isDark ? "text-txtOnDark" : "text-txtOnWhite"
+                        } font-normal text-definition md:text-phonetic`}
+                      >
+                        {item}
+                      </span>
+                    </li>
+                    {exampleOfNoun[index] && (
+                      <p className="mt-[13px] text-meaning text-definition md:text-phonetic">
+                        "{exampleOfNoun[index]}"
+                      </p>
+                    )}
+                  </div>
                 );
               })}
             </ul>
@@ -124,17 +141,24 @@ export default function Output({
               Meaning
             </p>
             <ul className="list-disc ml-5 md:ml-10">
-              {definitionsVerb?.map((item) => {
+              {definitionsVerb?.map((item, index) => {
                 return (
-                  <li className="text-li mt-[13px]" key={Math.random()}>
-                    <span
-                      className={`${
-                        isDark ? "text-txtOnDark" : "text-txtOnWhite"
-                      } font-normal text-definition md:text-phonetic`}
-                    >
-                      {item}
-                    </span>
-                  </li>
+                  <div key={index}>
+                    <li className="text-li mt-[13px]">
+                      <span
+                        className={`${
+                          isDark ? "text-txtOnDark" : "text-txtOnWhite"
+                        } font-normal text-definition md:text-phonetic`}
+                      >
+                        {item}
+                      </span>
+                    </li>
+                    {exampleOfVerb[index] && (
+                      <p className="mt-[13px] text-meaning text-definition md:text-phonetic">
+                        "{exampleOfVerb[index]}"
+                      </p>
+                    )}
+                  </div>
                 );
               })}
             </ul>
@@ -163,17 +187,24 @@ export default function Output({
               Meaning
             </p>
             <ul className="list-disc ml-5 md:ml-10">
-              {definitionsAdj?.map((item) => {
+              {definitionsAdj?.map((item, index) => {
                 return (
-                  <li className="text-li mt-[13px]" key={Math.random()}>
-                    <span
-                      className={`${
-                        isDark ? "text-txtOnDark" : "text-txtOnWhite"
-                      } font-normal text-definition md:text-phonetic`}
-                    >
-                      {item}
-                    </span>
-                  </li>
+                  <div key={index}>
+                    <li className="text-li mt-[13px]">
+                      <span
+                        className={`${
+                          isDark ? "text-txtOnDark" : "text-txtOnWhite"
+                        } font-normal text-definition md:text-phonetic`}
+                      >
+                        {item}
+                      </span>
+                    </li>
+                    {exampleOfAdj[index] && (
+                      <p className="mt-[13px] text-meaning text-definition md:text-phonetic">
+                        "{exampleOfAdj[index]}"
+                      </p>
+                    )}
+                  </div>
                 );
               })}
             </ul>

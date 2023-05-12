@@ -10,17 +10,25 @@ function App() {
 
   return (
     <div
-      className={`w-full px-6 pt-6 pb-[84px] ${
+      className={`w-full min-h-screen px-6 pt-6 pb-[84px] ${
         isDark ? "bg-wholeDark" : "bg-wholeWhite"
-      } font-${font} md:pt-[58px] md:px-[39.5px] md:pb-[118px] md:max-w-screen-md	md:m-auto`}
+      } ${
+        font === "inter"
+          ? "font-inter"
+          : font === "lora"
+          ? "font-lora"
+          : "font-inconsolata"
+      } md:pt-[58px] md:px-[39.5px] md:pb-[118px]`}
     >
-      <Header
-        isDark={isDark}
-        setIsDark={setIsDark}
-        font={font}
-        setFont={setFont}
-      />
-      <Input isDark={isDark} setIsDark={setIsDark} />
+      <div className="md:max-w-[736px] md:m-auto">
+        <Header
+          isDark={isDark}
+          setIsDark={setIsDark}
+          font={font}
+          setFont={setFont}
+        />
+        <Input isDark={isDark} setIsDark={setIsDark} />
+      </div>
     </div>
   );
 }

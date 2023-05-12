@@ -25,6 +25,7 @@ export default {
         txtOnDark: "#FFFFFF",
         meaning: "#757575",
         li: "#8F19E8",
+        red: "#FF5252"
       },
       boxShadow: {
         shad: "0px 5px 30px rgba(0, 0, 0, 0.1)",

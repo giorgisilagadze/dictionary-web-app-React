@@ -5,31 +5,32 @@ import NoMatch from "./NoMatch";
 
 export default function InAndOut({ isDark, setIsDark }) {
   const [data, setData] = useState(null);
-  const [status, setStatus] = useState(null);
-  const [value, setValue] = useState();
+  const [value, setValue] = useState("");
   const [isRed, setIsRed] = useState(false);
-  const inputRef = useRef(null);
 
-  console.log(value);
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter" && event.target.value != "") {
-      getData(event.target.value);
-      setValue(event.target.value);
-    }
-
-    // if (event.key === "Enter" && event.target.value === "") {
-    //   setIsRed(!isRed);
-    //   console.log(isRed);
-    // }
-  };
-
-  const handleClick = (event) => {
-    if (event.target.value != "") {
-      getData(event.target.value);
-      setValue(event.target.value);
+  const search = () => {
+    if (value != "") {
+      getData();
+      setIsRed(false);
+    } else {
+      setIsRed(true);
+      console.log(!isRed);
+      setData(null);
     }
   };
 
+  const getData = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${value}`
+      );
+      const wordInfo = response.data;
+      setData(wordInfo);
+      setValue(wordInfo[0].word);
+    } catch {
+      setData("");
+    }
+  };
   const getDefinitionsByPartOfSpeech = (data, partOfSpeech) => {
     return data?.flatMap((item) =>
       item.meanings.flatMap((meaning) =>
@@ -40,29 +41,14 @@ export default function InAndOut({ isDark, setIsDark }) {
     );
   };
 
-  const getData = async (value) => {
-    const response = await axios.get(
-      `https://api.dictionaryapi.dev/api/v2/entries/en/${value}`
+  const getExamplesByPartOfSpeech = (data, partOfSpeech) => {
+    return data?.flatMap((item) =>
+      item.meanings.flatMap((meaning) =>
+        meaning.partOfSpeech === partOfSpeech
+          ? meaning.definitions.map((def) => def.example)
+          : []
+      )
     );
-    const wordInfo = response.data;
-    const status = response.status;
-    setData(wordInfo);
-    console.log(status);
-
-    const getAudioLinks = wordInfo?.[0].phonetics
-      .map((phonetic) => phonetic.audio)
-      .filter((audio) => audio != "");
-
-    const getSynonyms = wordInfo?.[0].meanings
-      .map((synonym) => synonym.synonyms)
-      .filter((synonyms) => synonyms != "");
-
-    console.log(getAudioLinks);
-    const nounDefinitions = getDefinitionsByPartOfSpeech(wordInfo, "noun");
-    const verbDefinitions = getDefinitionsByPartOfSpeech(wordInfo, "verb");
-    console.log(nounDefinitions);
-    console.log(verbDefinitions);
-    console.log(getSynonyms[0]);
   };
 
   return (
@@ -76,33 +62,40 @@ export default function InAndOut({ isDark, setIsDark }) {
             } rounded-2xl pt-[12px] pb-[14px] pl-[24px] focus:outline-none font-bold text-input ${
               isDark ? "text-txtOnDark" : "text-txtOnWhite"
             } absolute z-10 ${
-              isRed ? "border-red" : ""
+              isRed ? "border-2 border-rose-500" : "border-none"
             } md:pt-[19px] md:pb-[22px] md:h-[64px] md:text-inputTab`}
             placeholder="Search for any word…"
-            onKeyDown={(event) => handleKeyDown(event)}
-            ref={inputRef}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                search();
+              }
+            }}
+            onChange={(event) => {
+              setValue(event.target.value);
+              setIsRed(false);
+            }}
           />
           <img
             src="./images/icon-search.svg"
             alt="search-icon"
             className="absolute top-4 right-6 z-20 md:top-6"
             onClick={() => {
-              // if (inputRef.current.value != "") {
-              //   getData(inputRef.current.value);
-              //   console.log(inputRef.current.value);
-              // }
-              // else {
-              //   setIsRed(!isRed);
-              // }
+              search();
             }}
           />
+          {isRed ? (
+            <p className="text-red absolute top-[52px] left-1 text-input md:text-inputTab md:top-[68px]">
+              Whoops, can’t be empty…
+            </p>
+          ) : null}
         </div>
       </div>
-      {value != undefined &&
-        (data?.[0]?.word === value ? (
+      {!isRed &&
+        data != undefined &&
+        (data != "" ? (
           <Output
             isDark={isDark}
-            word={value}
+            word={data[0].word}
             phonetic={data?.[0]?.phonetic}
             definitionsNoun={getDefinitionsByPartOfSpeech(data, "noun")}
             synonyms={data?.[0].meanings
@@ -114,6 +107,9 @@ export default function InAndOut({ isDark, setIsDark }) {
               .filter((audio) => audio != "")}
             definitionsAdj={getDefinitionsByPartOfSpeech(data, "adjective")}
             source={data?.[0]?.sourceUrls}
+            exampleOfNoun={getExamplesByPartOfSpeech(data, "noun")}
+            exampleOfVerb={getExamplesByPartOfSpeech(data, "verb")}
+            exampleOfAdj={getExamplesByPartOfSpeech(data, "adjective")}
           />
         ) : (
           <NoMatch isDark={isDark} />
