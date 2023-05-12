@@ -37,20 +37,27 @@
 
 1. First of all you need to clone app repository from github:
 
+```
 git clone https://github.com/giorgisilagadze/dictionary-web-app-React.git
+```
 
 2. Next step requires install all the dependencies.
 
+```
 npm install
+```
 
 3. To see project in action
 
+```
 npm run dev
+```
 
 #
 
 ### Project Structure
 
+```
 |--- src
 | |--- components # reusable components
 | |--- App.jsx # main page
@@ -59,6 +66,7 @@ npm run dev
 - package.json # dependency manager configurations
 - tailwind.config.js # CSS configuration
 - vite.config.js # fast build tool
+```
 
 #
 
@@ -66,7 +74,9 @@ npm run dev
 
 Before every deployment you need to create build file.
 
+```
 npm run build
+```
 
 after this you can use this file to deploy project on server.
 
